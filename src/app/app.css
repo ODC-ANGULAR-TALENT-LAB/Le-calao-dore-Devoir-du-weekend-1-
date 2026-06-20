@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+
+/* Compense la hauteur du header fixe pour le contenu principal */
+main {
+  display: block;
+}
