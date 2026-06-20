@@ -1,0 +1,114 @@
+/* ============================================================
+   Footer — 3 colonnes responsives
+   ============================================================ */
+
+.footer {
+  background: var(--vert-foret-dark);
+  color: rgba(250, 243, 224, 0.82);
+  font-size: 0.95rem;
+}
+
+.footer h5 {
+  color: var(--creme-sable);
+  font-family: var(--font-titre);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer-brand {
+  font-size: 1.4rem;
+  color: var(--or-soleil) !important;
+}
+
+.footer-brand .logo-icon { font-size: 1.3rem; }
+
+.footer-tagline,
+.footer-text {
+  color: rgba(250, 243, 224, 0.7);
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+/* --- Coordonnées --- */
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
+}
+
+.footer-contact i {
+  color: var(--or-soleil);
+  width: 18px;
+  text-align: center;
+}
+
+/* --- Réseaux sociaux --- */
+.socials {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(250, 243, 224, 0.08);
+  color: var(--creme-sable);
+  font-size: 1.25rem;
+  transition: transform var(--transition), background var(--transition), color var(--transition);
+}
+
+.social-link:hover {
+  background: var(--or-soleil);
+  color: var(--vert-foret-dark);
+  transform: translateY(-4px);
+}
+
+/* --- Liens rapides --- */
+.footer-links li { margin-bottom: 0.6rem; }
+
+.footer-links a {
+  color: rgba(250, 243, 224, 0.8);
+  position: relative;
+  padding-left: 0;
+  transition: padding-left var(--transition), color var(--transition);
+}
+
+.footer-links a::before {
+  content: '›';
+  color: var(--or-soleil);
+  margin-right: 0.4rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--or-soleil);
+  padding-left: 0.3rem;
+}
+
+.footer-links a:hover::before { opacity: 1; }
+
+/* --- Bas de footer --- */
+.footer-divider {
+  border-color: rgba(250, 243, 224, 0.15);
+  margin: 2.2rem 0 1.4rem;
+}
+
+.copyright {
+  color: rgba(250, 243, 224, 0.6);
+  font-size: 0.86rem;
+}
+
+/* Sur mobile, les colonnes s'empilent (Bootstrap col-12) :
+   on centre légèrement pour l'esthétique tactile */
+@media (max-width: 767.98px) {
+  .footer { text-align: center; }
+  .footer-contact li,
+  .socials { justify-content: center; }
+}
