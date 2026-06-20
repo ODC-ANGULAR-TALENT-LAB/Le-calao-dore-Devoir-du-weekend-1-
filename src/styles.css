@@ -1,0 +1,135 @@
+/* ============================================================
+   Le Calao Doré — Styles globaux
+   Palette imposée (identité visuelle camerounaise)
+   ============================================================ */
+
+:root {
+  /* --- Palette imposée --- */
+  --vert-foret: #2D4A3E;   /* Vert foncé — Forêt camerounaise */
+  --terracotta: #C84B31;   /* Terracotta — Terre rouge       */
+  --or-soleil: #E9B824;    /* Or — Soleil tropical           */
+  --creme-sable: #FAF3E0;  /* Crème — Sable Kribi            */
+
+  /* --- Nuances complémentaires (autorisées) --- */
+  --vert-foret-dark: #213a30;
+  --vert-foret-light: #3c5f50;
+  --or-soleil-dark: #c99a16;
+  --texte: #2b2b2b;
+  --texte-doux: #6b7066;
+  --blanc: #ffffff;
+
+  /* --- Système de design --- */
+  --font-titre: 'Playfair Display', Georgia, serif;
+  --font-corps: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --shadow-sm: 0 2px 10px rgba(45, 74, 62, 0.08);
+  --shadow-md: 0 10px 30px rgba(45, 74, 62, 0.12);
+  --shadow-lg: 0 20px 50px rgba(45, 74, 62, 0.18);
+  --radius: 16px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Reset doux & base --- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* compense le header fixe lors des ancres */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-corps);
+  color: var(--texte);
+  background-color: var(--creme-sable);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-titre);
+  color: var(--vert-foret);
+  letter-spacing: -0.01em;
+}
+
+a {
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+/* --- Titres de section harmonisés --- */
+.section-title {
+  font-family: var(--font-titre);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  color: var(--vert-foret);
+  text-align: center;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.section-eyebrow {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--terracotta);
+  margin-bottom: 0.6rem;
+}
+
+/* Petit séparateur décoratif sous les titres */
+.title-underline {
+  width: 70px;
+  height: 4px;
+  margin: 1rem auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--or-soleil), var(--terracotta));
+}
+
+/* --- Boutons premium réutilisables --- */
+.btn-calao {
+  --bs-btn-padding-y: 0.85rem;
+  --bs-btn-padding-x: 2rem;
+  background: var(--or-soleil);
+  color: var(--vert-foret-dark);
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 8px 22px rgba(233, 184, 36, 0.4);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  min-height: 48px;
+}
+
+.btn-calao:hover,
+.btn-calao:focus {
+  background: var(--or-soleil-dark);
+  color: var(--vert-foret-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(233, 184, 36, 0.5);
+}
+
+/* --- Accessibilité : focus visible clair --- */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--or-soleil);
+  outline-offset: 2px;
+}
+
+/* --- Animation d'apparition douce --- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  animation: fadeUp 0.7s ease both;
+}
+
+/* Respect des préférences d'accessibilité (mouvement réduit) */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
