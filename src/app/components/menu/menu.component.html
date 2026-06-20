@@ -1,0 +1,64 @@
+<section id="menu" class="menu-section py-5">
+  <div class="container py-4">
+
+    <span class="section-eyebrow">Notre carte</span>
+    <h2 class="section-title">Le menu du Calao</h2>
+    <div class="title-underline"></div>
+    <p class="menu-intro text-center">
+      Des recettes camerounaises préparées chaque jour avec des produits frais du marché.
+    </p>
+
+    <!-- Filtres par catégorie (bonus interactif) -->
+    <div class="menu-filters" role="tablist" aria-label="Filtrer les plats par catégorie">
+      @for (filter of filters; track filter.key) {
+        <button
+          type="button"
+          class="filter-btn"
+          [class.active]="selectedCategory === filter.key"
+          (click)="setFilter(filter.key)">
+          {{ filter.label }}
+        </button>
+      }
+    </div>
+
+    <div class="row g-4">
+      @for (dish of filteredDishes; track dish.id) {
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card dish-card h-100">
+            <div class="card-body">
+
+              <!-- Badge dynamique selon la catégorie -->
+              <span
+                class="badge dish-badge"
+                [ngClass]="{
+                  'bg-success': dish.category === 'entree',
+                  'bg-danger': dish.category === 'plat',
+                  'bg-warning text-dark': dish.category === 'dessert'
+                }">
+                @switch (dish.category) {
+                  @case ('entree') { Entrée }
+                  @case ('plat') { Plat }
+                  @case ('dessert') { Dessert }
+                }
+              </span>
+
+              <h5 class="card-title dish-name mt-2">{{ dish.name }}</h5>
+              <p class="card-text dish-desc text-muted">{{ dish.description }}</p>
+
+              <div class="dish-footer">
+                <span class="price fw-bold">{{ formatPrice(dish.price) }} <small>FCFA</small></span>
+                <span class="dish-dot" aria-hidden="true"></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      } @empty {
+        <p class="text-center text-muted w-100">Aucun plat dans cette catégorie.</p>
+      }
+    </div>
+
+    <p class="menu-note text-center">
+      Les prix sont indiqués en francs CFA (FCFA), service compris.
+    </p>
+  </div>
+</section>
