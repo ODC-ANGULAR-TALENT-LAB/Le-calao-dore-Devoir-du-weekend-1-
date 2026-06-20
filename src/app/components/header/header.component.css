@@ -1,0 +1,189 @@
+/* ============================================================
+   Header — navbar responsive + menu burger mobile
+   ============================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--vert-foret);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+}
+
+/* Effet « sticky » : header légèrement plus compact une fois défilé */
+.site-header.scrolled {
+  background: var(--vert-foret-dark);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* --- Logo --- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-titre);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--or-soleil);
+  line-height: 1;
+}
+
+.logo-icon {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.logo-text { color: var(--creme-sable); }
+.logo-accent { color: var(--or-soleil); }
+
+/* --- Navbar (desktop) --- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav a {
+  position: relative;
+  padding: 0.5rem 0.9rem;
+  color: var(--creme-sable);
+  font-weight: 500;
+  font-size: 0.97rem;
+  border-radius: 8px;
+}
+
+/* Soulignement animé au survol */
+.nav a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.35rem;
+  height: 2px;
+  background: var(--or-soleil);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.nav a:not(.nav-cta):hover::after,
+.nav a.active:not(.nav-cta)::after {
+  transform: scaleX(1);
+}
+
+.nav a:hover { color: var(--or-soleil); }
+
+/* Lien actif mis en évidence */
+.nav a.active {
+  color: var(--or-soleil);
+  font-weight: 600;
+}
+
+/* Bouton « Réserver » dans la navbar */
+.nav-cta {
+  margin-left: 0.6rem;
+  background: var(--or-soleil);
+  color: var(--vert-foret-dark) !important;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 0.55rem 1.3rem !important;
+}
+
+.nav-cta:hover {
+  background: var(--or-soleil-dark);
+  color: var(--vert-foret-dark) !important;
+}
+
+/* --- Bouton burger (caché sur desktop) --- */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  margin: 0 auto;
+  background: var(--creme-sable);
+  border-radius: 3px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Animation burger → croix */
+.burger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.burger.is-open span:nth-child(2) { opacity: 0; }
+.burger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ============================================================
+   MOBILE (< 600px) : la navbar disparaît, place au burger
+   ============================================================ */
+@media (max-width: 599.98px) {
+  .burger { display: flex; }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 1rem 1.2rem;
+    background: var(--vert-foret-dark);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.28s ease;
+  }
+
+  .nav a {
+    padding: 0.95rem 1rem;
+    min-height: 44px; /* zone tactile confortable au pouce */
+    border-bottom: 1px solid rgba(250, 243, 224, 0.08);
+  }
+
+  .nav a:not(.nav-cta)::after { display: none; }
+
+  .nav-cta {
+    margin: 0.8rem 0 0;
+    text-align: center;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   TABLETTE (600 – 900px) : navbar compacte
+   ============================================================ */
+@media (min-width: 600px) and (max-width: 900px) {
+  .nav { gap: 0.05rem; }
+  .nav a {
+    padding: 0.5rem 0.55rem;
+    font-size: 0.9rem;
+  }
+  .nav a:not(.nav-cta)::after { left: 0.55rem; right: 0.55rem; }
+  .nav-cta { padding: 0.5rem 1rem !important; }
+}

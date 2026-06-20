@@ -1,0 +1,37 @@
+<header class="site-header" [class.scrolled]="isScrolled">
+  <div class="header-inner">
+
+    <!-- Logo : texte en or sur fond vert foncé -->
+    <a class="logo" href="#accueil" (click)="setActive('Accueil')">
+      <span class="logo-icon" aria-hidden="true">🦤</span>
+      <span class="logo-text">Le Calao <span class="logo-accent">Doré</span></span>
+    </a>
+
+    <!-- Bouton burger : visible uniquement sur mobile (géré en CSS) -->
+    <button
+      class="burger"
+      [class.is-open]="isMenuOpen"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen"
+      aria-label="Ouvrir le menu de navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Navbar : visible par défaut sur desktop, conditionnelle sur mobile -->
+    @if (isMenuOpen || !isMobile) {
+      <nav class="nav" [class.nav-open]="isMenuOpen">
+        @for (link of links; track link.label) {
+          <a
+            [href]="'#' + link.target"
+            [class.active]="activeLink === link.label"
+            (click)="setActive(link.label)">
+            {{ link.label }}
+          </a>
+        }
+        <a class="nav-cta" href="#contact" (click)="setActive('Contact')">Réserver</a>
+      </nav>
+    }
+  </div>
+</header>
