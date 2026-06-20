@@ -1,0 +1,50 @@
+<section id="horaires" class="horaires-section py-5">
+  <div class="container py-4">
+
+    <span class="section-eyebrow">Venez quand vous voulez</span>
+    <h2 class="section-title">Nos horaires d'ouverture</h2>
+    <div class="title-underline"></div>
+
+    <!-- Bannière de statut dynamique : ouvert maintenant ou fermé -->
+    <div class="status-banner" [class.open]="isOpenNow" [class.closed]="!isOpenNow">
+      <span class="status-dot" aria-hidden="true"></span>
+      @if (isOpenNow) {
+        <span><strong>Ouvert maintenant</strong> · nous vous accueillons jusqu'à
+          {{ horaireDuJour?.fermeture }}</span>
+      } @else {
+        <span><strong>Actuellement fermé</strong> · retrouvez nos horaires ci-dessous</span>
+      }
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <ul class="list-group horaires-list">
+          @for (h of horaires; track h.jour) {
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+              [class.current-day]="h.jour === jourActuel">
+
+              <span class="jour fw-bold">
+                {{ h.jour }}
+                @if (h.jour === jourActuel) {
+                  <span class="today-tag">Aujourd'hui</span>
+                }
+              </span>
+
+              @if (h.ferme) {
+                <span class="badge bg-danger badge-statut">Fermé</span>
+              } @else {
+                <span class="horaire-plage">
+                  {{ h.ouverture }} - {{ h.fermeture }}
+                  @if (h.jour === jourActuel && isOpenNow) {
+                    <span class="badge bg-success ms-2 badge-statut">Ouvert</span>
+                  }
+                </span>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

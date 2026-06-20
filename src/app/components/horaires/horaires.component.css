@@ -1,0 +1,118 @@
+/* ============================================================
+   Horaires — liste des jours + statut dynamique
+   ============================================================ */
+
+.horaires-section {
+  background: var(--creme-sable);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* --- Bannière de statut --- */
+.status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 640px;
+  margin: 1.8rem auto 2.4rem;
+  padding: 0.9rem 1.4rem;
+  border-radius: 50px;
+  font-size: 0.97rem;
+  text-align: center;
+}
+
+.status-banner.open {
+  background: rgba(45, 74, 62, 0.1);
+  color: var(--vert-foret);
+  border: 1px solid rgba(45, 74, 62, 0.25);
+}
+
+.status-banner.closed {
+  background: rgba(200, 75, 49, 0.1);
+  color: var(--terracotta);
+  border: 1px solid rgba(200, 75, 49, 0.3);
+}
+
+.status-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-banner.open .status-dot {
+  background: #2e7d32;
+  box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.6);
+  animation: pulse 1.8s infinite;
+}
+
+.status-banner.closed .status-dot {
+  background: var(--terracotta);
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(46, 125, 50, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0); }
+}
+
+/* --- Liste des horaires --- */
+.horaires-list {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.horaires-list .list-group-item {
+  padding: 1.05rem 1.5rem;
+  border-color: rgba(45, 74, 62, 0.1);
+  font-size: 1rem;
+  background: var(--blanc);
+}
+
+.jour {
+  color: var(--vert-foret);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.horaire-plage {
+  color: var(--texte-doux);
+  font-weight: 500;
+}
+
+.badge-statut {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.4em 0.75em;
+  border-radius: 50px;
+}
+
+/* Jour actuel mis en évidence */
+.list-group-item.current-day {
+  background: linear-gradient(90deg, rgba(233, 184, 36, 0.16), rgba(233, 184, 36, 0.04));
+  border-left: 4px solid var(--or-soleil);
+}
+
+.list-group-item.current-day .jour {
+  color: var(--vert-foret-dark);
+}
+
+.today-tag {
+  font-family: var(--font-corps);
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vert-foret-dark);
+  background: var(--or-soleil);
+  padding: 0.18em 0.6em;
+  border-radius: 50px;
+}
+
+@media (max-width: 599.98px) {
+  .horaires-list .list-group-item { padding: 0.9rem 1rem; font-size: 0.93rem; }
+  .status-banner { font-size: 0.88rem; padding: 0.8rem 1rem; }
+}
