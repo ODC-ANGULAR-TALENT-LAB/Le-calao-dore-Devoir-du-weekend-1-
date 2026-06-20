@@ -1,0 +1,40 @@
+<section id="temoignages" class="testimonials-section py-5">
+  <div class="container py-4">
+
+    <span class="section-eyebrow">Ils nous font confiance</span>
+    <h2 class="section-title">Ce qu'ils en disent</h2>
+    <div class="title-underline"></div>
+
+    <div class="row g-4 mt-2">
+      @for (t of testimonials; track t.id) {
+        <div class="col-12 col-md-4">
+          <article
+            class="testimonial-card p-4 h-100"
+            [class.bg-success]="t.rating > 3"
+            [class.bg-warning]="t.rating === 3"
+            [class.bg-danger]="t.rating < 3">
+
+            <i class="bi bi-quote quote-mark" aria-hidden="true"></i>
+
+            <!-- Affichage des étoiles avec @for imbriqué -->
+            <div class="stars mb-3" [attr.aria-label]="'Note : ' + t.rating + ' sur 5'">
+              @for (star of getStars(t.rating); track $index) {
+                <i class="bi bi-star-fill" aria-hidden="true"></i>
+              }
+              @for (star of getEmptyStars(t.rating); track $index) {
+                <i class="bi bi-star empty" aria-hidden="true"></i>
+              }
+            </div>
+
+            <p class="testimonial-text">{{ t.text }}</p>
+
+            <div class="testimonial-author">
+              <span class="avatar" aria-hidden="true">{{ getInitials(t.name) }}</span>
+              <span class="author-name fw-bold">{{ t.name }}</span>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>
