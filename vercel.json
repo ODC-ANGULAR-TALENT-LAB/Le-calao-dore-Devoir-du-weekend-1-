@@ -1,6 +1,6 @@
 { 
   "buildCommand": "ng build", 
-  "outputDirectory": "dist/shop-app/browser", 
+  "outputDirectory": "dist/le-calao-dore-devoir-du-weekend-1/browser", 
   "rewrites": [ 
     { 
       "source": "/(.*)", 
